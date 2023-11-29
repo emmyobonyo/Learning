@@ -7,10 +7,10 @@ const server = http.createServer((req, res) => {
         // is in the response. In this case it's going to be JSON.
         'Content-Type': 'application/json'
     })
-        // Lets end our response. We use res.end() to tell the other computer 
+        // Lets end our response. We use res.end() to tell the other computer
         // that our response is done.
-        // res.end function expects a string so we need to chain it with a 
-        // JSON.stringify() function to change our JSON response into a string. 
+        // res.end function expects a string so we need to chain it with a
+        // JSON.stringify() function to change our JSON response into a string.
         // Not very complicated.
 
     res.end(JSON.stringify({
