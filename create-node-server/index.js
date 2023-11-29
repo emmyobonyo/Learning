@@ -3,9 +3,9 @@ const http = require('http');
 
 // Initialise a server called server
 const server = http.createServer((req, res) => {
-  // req is listening to data coming in from other computers, the clients. It's siting there waiting to here what the other computers want to tell it.For example we get the client URL using req.url
+  // req is listening to data coming in from other computers, the clients. It's siting there waiting to hear what the other computers want to tell it. For example we can get a 'message' containing the client URL using req.url
 
-  // res is the server response. It's responding to a request (req) made ny another computer. We can add special messages called headers to our response to help the other computer understand our message better.
+  // res is the server response. We got a request from the server and now we need to respond. We can add special messages called headers to our response to help the other computer understand our message better.
 
   // We can write these extra messages using the writeHead method which takes a status code and a content-type among other parameters.
 
