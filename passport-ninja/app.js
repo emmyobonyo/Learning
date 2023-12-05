@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const keys = require('./services/keys');
 const passport = require('passport');
+const profileRoutes = require('./routes/profile');
 
 const MONGO_URL =
   'mongodb+srv://komagumobonyo:G89uxVxOPI6Ag3u2@cluster0.p9gn28p.mongodb.net/learn';
@@ -32,6 +33,9 @@ app.use(passport.session());
 
 // Set up routes
 app.use('/auth', authRoutes);
+
+// Profile routes
+app.use('/profile', profileRoutes);
 
 // Create home route
 app.get('/', (req, res) => {

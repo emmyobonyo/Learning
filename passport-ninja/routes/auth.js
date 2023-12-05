@@ -32,8 +32,13 @@ router.get(
 // router.get('/google/callback', passport.authenticate('google'), (req, res) => {
 //   res.send('You reached the callback URI');
 // });
-router.get('/google/callback', passport.authenticate('google'), (req, res) => {
-  res.send(req.user);
-  // res.send('you reached the redirect URI');
-});
+router.get(
+  '/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  (req, res) => {
+    // res.send(req.user);
+    // res.send('you reached the redirect URI');
+    res.redirect('/profile');
+  }
+);
 module.exports = router;
