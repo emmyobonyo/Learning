@@ -33,6 +33,7 @@ router.get(
 //   res.send('You reached the callback URI');
 // });
 router.get('/google/callback', passport.authenticate('google'), (req, res) => {
-  res.send('you reached the redirect URI');
+  res.send(req.user);
+  // res.send('you reached the redirect URI');
 });
 module.exports = router;

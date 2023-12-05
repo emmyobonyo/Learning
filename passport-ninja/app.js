@@ -27,7 +27,7 @@ app.use(
 );
 
 // Initiaize passport
-app.use(passport.initialize);
+app.use(passport.initialize());
 app.use(passport.session());
 
 // Set up routes
