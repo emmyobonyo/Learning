@@ -4,6 +4,7 @@ const keys = require('./keys');
 const User = require('../models/user-model');
 
 // An alternate longer way of doing things
+
 // function assignUser(profile) {
 //   const user = new User({
 //     username: profile.displayName,
@@ -26,6 +27,16 @@ const User = require('../models/user-model');
 //   console.log('User has been saved');
 // }
 
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id).then((user) => {
+    done(null.user);
+  });
+});
+
 passport.use(
   new GoogleStrategy(
     {
@@ -43,6 +54,7 @@ passport.use(
         if (currentUser) {
           // Already have a User
           console.log('Current User is', currentUser);
+          done(null, currentUser);
         } else {
           new User({
             googleid: profile.googleid,
@@ -51,6 +63,7 @@ passport.use(
             .save()
             .then((newUser) => {
               console.log('New User', newUser);
+              done(null, newUser);
             });
         }
       });
