@@ -7,7 +7,7 @@ router.get('/logout', (req, res) => {
 
 // Login route
 router.get('/login', (req, res) => {
-  res.send('This is the login route');
+  res.render('login');
 });
 
 //Github passport route
