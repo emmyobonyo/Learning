@@ -39,7 +39,7 @@ app.use('/profile', profileRoutes);
 
 // Create home route
 app.get('/', (req, res) => {
-  res.render('home');
+  res.render('home', { user: req.user });
 });
 
 async function startServer() {

@@ -1,9 +1,15 @@
 const router = require('express').Router();
 
-router.get('/', (req, res) => {
-  res.send(
-    'You are logged in. This is your profile username: ' + req.user.username
-  );
+const authCheck = (req, res, next) => {
+  if (!req.user) {
+    res.redirect('/auth/login');
+  } else {
+    next();
+  }
+};
+
+router.get('/', authCheck, (req, res) => {
+  res.render('profile', { user: req.user });
 });
 
 module.exports = router;
