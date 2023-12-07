@@ -5,11 +5,12 @@ const keys = require('./keys');
 passport.use(
   new GithubStrategy(
     {
-      callbackURL: 'auth/github/callback',
+      callbackURL: '/auth/github/callback',
       clientID: keys.github.clientID,
+      clientSecret: keys.github.clientSecret,
     },
-    () => {
-      console.log('Here is a callback that is being run');
+    (accessToken, refreshToken, profile, done) => {
+      console.log(profile);
     }
   )
 );

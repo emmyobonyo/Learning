@@ -18,13 +18,19 @@ router.get('/login', (req, res) => {
 router.get(
   '/github',
   passport.authenticate('github', {
-    scope: ['profile'],
+    scope: ['user:email'],
   })
 );
 
 // Github Authentication callbacks route
-router.get('/github/callback', (req, res) => {
-  res.send('This is the callback route for github authentication');
-});
+router.get(
+  '/github/callback',
+  passport.authenticate('github', {
+    failureRedirect: '/login',
+  }),
+  (req, res) => {
+    res.send('This is the callback route for github authentication');
+  }
+);
 
 module.exports = router;
