@@ -1,5 +1,6 @@
 // Logout route
 const router = require('express').Router();
+const passport = require('passport');
 
 router.get('/logout', (req, res) => {
   res.send('This is the Log out route');
@@ -11,9 +12,15 @@ router.get('/login', (req, res) => {
 });
 
 //Github passport route
-router.get('/github', (req, res) => {
-  res.send('This is the github passport route. We shall work on it later');
-});
+// router.get('/github', passport.authenticate('github'), {
+//   scope: ['profile'],
+// });
+router.get(
+  '/github',
+  passport.authenticate('github', {
+    scope: ['profile'],
+  })
+);
 
 // Github Authentication callbacks route
 router.get('/github/callback', (req, res) => {
