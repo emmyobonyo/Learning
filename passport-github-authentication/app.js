@@ -1,7 +1,9 @@
 const express = require('express');
 const authRoutes = require('./routes/auth');
 const mongoose = require('mongoose');
-const passportSetup = require('./services/passpoer-setup');
+const passportSetup = require('./services/passport-setup');
+const cookieSession = require('cookie-session');
+const keys = require('./services/keys');
 
 const app = express();
 
@@ -17,6 +19,13 @@ async function mongoConnect() {
 
 // Set View engine
 app.set('view engine', 'ejs');
+
+app.use(
+  cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [keys.session.cookieKey],
+  })
+);
 
 // AUthentication Routes
 app.use('/auth', authRoutes);
