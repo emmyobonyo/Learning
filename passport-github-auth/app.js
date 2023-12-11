@@ -2,10 +2,10 @@ const express = require('express');
 const authRoutes = require('./routes/auth');
 const mongoose = require('mongoose');
 const passportSetup = require('./services/passport-setup');
-const cookieSession = require('cookie-session');
 const keys = require('./services/keys');
-
-const app = express();
+const cookieSession = require('cookie-session');
+const profileRoutes = require('./routes/profile');
+const passport = require('passport');
 
 const PORT = 3000;
 
@@ -17,7 +17,8 @@ async function mongoConnect() {
   console.log('Connection to MongoDb done');
 }
 
-// Set View engine
+const app = express();
+
 app.set('view engine', 'ejs');
 
 app.use(
@@ -27,10 +28,15 @@ app.use(
   })
 );
 
-// AUthentication Routes
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Initialize Auth Routes
 app.use('/auth', authRoutes);
 
-// Home Route
+// Profile Routes
+app.use('/profile', profileRoutes);
+
 app.use('/', (req, res) => {
   res.render('home');
 });
