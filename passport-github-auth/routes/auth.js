@@ -16,7 +16,7 @@ router.get(
   })
 );
 
-router.get('/github/callback', (req, res) => {
+router.get('/github/callback', passport.authenticate('github'), (req, res) => {
   res.send('this is where its redirected to');
 });
 

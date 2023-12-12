@@ -9,8 +9,10 @@ passport.use(
       clientID: keys.github.clientID,
       clientSecret: keys.github.clientSecret,
     },
-    () => {
+    (accessToken, refreshToken, profile, done) => {
       //passport cllback function
+      console.log('passport fired');
+      console.log(profile);
     }
   )
 );
