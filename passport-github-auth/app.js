@@ -2,6 +2,7 @@ const express = require('express');
 const authRoutes = require('./routes/auth');
 const passportSetup = require('./services/passport-setup');
 const mongoose = require('mongoose');
+const keys = require('./services/keys');
 
 const MONGO_URL =
   'mongodb+srv://komagumobonyo:G89uxVxOPI6Ag3u2@cluster0.p9gn28p.mongodb.net/learn';
